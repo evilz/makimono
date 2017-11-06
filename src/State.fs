@@ -9,9 +9,15 @@ open Types
 
 let pageParser: Parser<Page->Page,Page> =
   oneOf [
-    map About (s "about")
-    map Counter (s "counter")
     map Home (s "home")
+    // Charp
+    map (Csharp (GetStarted)) (s "csharp")
+    map (Csharp (QuickStarts)) (s "csharp" </> s "quick-starts")
+    map (Csharp (GetStarted)) (s "csharp" </> s "tour-of-csharp")
+    // Fsharp
+    map (Fsharp (FsharpPage.GetStarted)) (s "fsharp")
+    map (Fsharp (FsharpPage.QuickStarts)) (s "fsharp" </> s "quick-starts")
+    map (Fsharp (FsharpPage.IntroductionToFunctionalProgramming)) (s "fsharp" </> s "introduction-to-functional-programming")
   ]
 
 let urlUpdate (result: Option<Page>) model =

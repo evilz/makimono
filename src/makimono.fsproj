@@ -5,6 +5,12 @@
   <ItemGroup>
     <!-- Global to the app -->
     <Compile Include="Global.fs" />
+
+    <!-- COMPONENTS -->
+    <Compile Include="Components/Menu/Types.fs" />
+    <Compile Include="Components/Menu/State.fs" />
+    <Compile Include="Components/Menu/View.fs" />
+
     <!-- Info -->
     <Compile Include="Info/View.fs" />
     <!-- Counter -->

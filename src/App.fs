@@ -24,6 +24,20 @@ let menuItem label page currentPage =
             Href (toHash page) ]
           [ str label ] ]
 
+
+let menuItemAndSub label page currentPage =
+    li
+      [ ]
+      [ a
+          [ classList [ "menu-group", true;  "is-active", page = currentPage ]
+            Href (toHash page) ]
+          [ str label ]
+        ul [  ] [
+            menuItem "F#" (Page.Fsharp (FsharpPage.IntroductionToFunctionalProgramming)) currentPage
+            menuItem "F#" (Page.Fsharp (FsharpPage.QuickStarts)) currentPage
+          ]
+      ]
+
 let menu currentPage =
   aside
     [ ClassName "menu" ]
@@ -33,15 +47,15 @@ let menu currentPage =
       ul
         [ ClassName "menu-list" ]
         [ menuItem "Home" Home currentPage
-          menuItem "Counter sample" Counter currentPage
-          menuItem "About" Page.About currentPage ] ]
+          menuItem "C#" (Page.Csharp (GetStarted))  currentPage
+          menuItemAndSub "F#" (Page.Fsharp (FsharpPage.GetStarted)) currentPage ] ]
 
 let root model dispatch =
 
   let pageHtml =
     function
-    | Page.About -> Info.View.root
-    | Counter -> Counter.View.root model.counter (CounterMsg >> dispatch)
+    | Page.Fsharp _ -> Info.View.root
+    | Page.Csharp _ -> Counter.View.root model.counter (CounterMsg >> dispatch)
     | Home -> Home.View.root model.home (HomeMsg >> dispatch)
 
   div

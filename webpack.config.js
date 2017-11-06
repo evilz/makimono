@@ -3,32 +3,6 @@ var webpack = require("webpack");
 var fableUtils = require("fable-utils");
 var md = require('markdown-it')();
 
-
-// ==== NOT USED ====
-// var highlight = require('highlight.js');
-// const marked = require("8fold-marked");
-// const renderer = new marked.Renderer();
-
-
-// renderer.heading = function (text, level) {
-   
-//     return '<h' + level + ' class="title is-'+level+'">' +  text +'</h' + level + '>';
-//   }
-
-// renderer.paragraph = function (text) {
-    
-//     var replacer = '<img src="/graphics/emojis/$1.png" class="emoji" align="absmiddle" height="20" width="20">';
-//     var emoji = /:([A-Za-z0-9_\-\+]+?):/g;
-//     return "<p>"+text.replace(emoji, replacer)+"</p>";
-// }
-
-// // Synchronous highlighting with highlight.js
-// marked.setOptions({
-//     highlight: function (code) {
-//       return highlight.highlightAuto(code).value;
-//     }
-//   });
-
 var message = {
     
       validate: function(params) {
@@ -116,27 +90,14 @@ module.exports = {
                     "sass-loader"
                 ]
             },
-            // {
-            //     test: /\.md$/, 
-            //     use: [
-            //             {
-            //                 loader: "html-loader"
-            //             },
-            //             {
-            //                 loader: "markdown-loader",
-            //                 options: {
-            //                     renderer,
-            //                     gfm: true,
-            //                     emoji: true
-            //                 }
-            //             }
-            //     ]
-            // },
             {
                 test: /\.md$/, 
                 use: [
                         {
-                            loader: "html-loader"
+                            loader: "html-loader",
+                            options: {
+                                attrs: [':data-src']
+                              }
                         },
                         {
                             loader: "markdownit-loader",
